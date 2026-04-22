@@ -1,9 +1,13 @@
 <?php
 // Database configuration
 
-$conn = pg_connect("host=aws-0-eu-west.pooler.supabase.com dbname=postgres user=
-postgres.ayubevnxrmxvamdwuecx password=x@0H_jnXU;j\lGZI");
+$host = getenv('DB_HOST');
+$dbname = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$password = getenv('DB_PASSWORD');
+
+$conn = pg_connect("host=$host dbname=$dbname user=$user password=$password");
 if (!$conn){
-    die("Connection failed:   ". pg_last_error());
+    die("Connection failed: " . pg_last_error());
 }
 ?>
