@@ -2,12 +2,16 @@
 include '../includes/session.php';
 include '../includes/auth.php';
 
+
 if (!isLoggedIn()) {
     header("Location: ../login.php");
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
+
+// Deallocate all existing prepared statements to avoid "already exists" error
+pg_query($conn, "DEALLOCATE ALL");
 
 pg_prepare($conn, "get_stats", "SELECT 
     (SELECT COUNT(*) FROM contacts WHERE user_id = $1) as total_contacts,
