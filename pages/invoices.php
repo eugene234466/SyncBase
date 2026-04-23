@@ -59,7 +59,7 @@ while ($row = pg_fetch_assoc($contacts_result)) {
                 <form action="../actions/add_invoice.php" method="POST">
                     <label>Title</label>
                     <input type="text" name="title" placeholder="Invoice title" required>
-                    <label>Amount ($)</label>
+                    <label>Amount (₵)</label>
                     <input type="number" name="amount" placeholder="0.00" step="0.01" min="0" required>
                     <label>Contact</label>
                     <select name="contact_id">
@@ -95,7 +95,7 @@ while ($row = pg_fetch_assoc($contacts_result)) {
                     <tr>
                         <td><?= htmlspecialchars($invoice['title']) ?></td>
                         <td><?= $invoice['contact_name'] ? htmlspecialchars($invoice['contact_name']) : '—' ?></td>
-                        <td>$<?= number_format($invoice['amount'], 2) ?></td>
+                        <td>₵<?= number_format($invoice['amount'], 2) ?></td>
                         <td><span class="badge badge-<?= $invoice['status'] ?>"><?= ucfirst($invoice['status']) ?></span></td>
                         <td><?= $invoice['due_date'] ? date('M d, Y', strtotime($invoice['due_date'])) : '—' ?></td>
                         <td>
