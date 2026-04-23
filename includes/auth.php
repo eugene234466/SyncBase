@@ -46,7 +46,7 @@ function loginUser($email, $password) {
 function logoutUser() {
     session_unset();
     session_destroy();
-    header("Location: /syncbase/login.php");
+    header("Location: /login.php");
     exit();
 }
 ?>
