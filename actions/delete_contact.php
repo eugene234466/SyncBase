@@ -15,8 +15,7 @@ if (!$id) {
     exit();
 }
 
-pg_prepare($conn, "delete_contact", "DELETE FROM contacts WHERE id=$1 AND user_id=$2");
-pg_execute($conn, "delete_contact", array($id, $user_id));
+pg_query_params($conn, "DELETE FROM contacts WHERE id=$1 AND user_id=$2", array($id, $user_id));
 
 header("Location: ../pages/contacts.php");
 exit();
