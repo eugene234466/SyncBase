@@ -24,8 +24,7 @@ if (empty($name)) {
     exit();
 }
 
-pg_prepare($conn, "insert_contact", "INSERT INTO contacts (user_id, name, email, phone, company, notes) VALUES ($1, $2, $3, $4, $5, $6)");
-pg_execute($conn, "insert_contact", array($user_id, $name, $email, $phone, $company, $notes));
+pg_query_params($conn, "INSERT INTO contacts (user_id, name, email, phone, company, notes) VALUES ($1, $2, $3, $4, $5, $6)", array($user_id, $name, $email, $phone, $company, $notes));
 
 header("Location: ../pages/contacts.php");
 exit();
