@@ -24,12 +24,9 @@ if (empty($title)) {
 }
 
 $valid_stages = ["lead", "negotiation", "closed"];
-if (!in_array($stage, $valid_stages)) {
-    $stage = "lead";
-}
+if (!in_array($stage, $valid_stages)) $stage = "lead";
 
-pg_prepare($conn, "insert_deal", "INSERT INTO deals (user_id, contact_id, title, value, stage) VALUES ($1, $2, $3, $4, $5)");
-pg_execute($conn, "insert_deal", array($user_id, $contact_id, $title, $value, $stage));
+pg_query_params($conn, "INSERT INTO deals (user_id, contact_id, title, value, stage) VALUES ($1, $2, $3, $4, $5)", array($user_id, $contact_id, $title, $value, $stage));
 
 header("Location: ../pages/deals.php");
 exit();
