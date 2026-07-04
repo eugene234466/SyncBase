@@ -7,7 +7,7 @@ $dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 
-$conn = $conn = pg_connect("host=$host dbnamme=$dbname user=$user password=$password port=$port");
+$conn = $conn = pg_connect("host=$host dbname=$dbname user=$user password=$password port=$port");
 if (!$conn){
     error_log("PostgreSQL connection failed");
     die("Unable to connect to database. Please try again later.");
